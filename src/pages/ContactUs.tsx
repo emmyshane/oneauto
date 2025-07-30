@@ -40,7 +40,8 @@ export function ContactUs() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-xl text-white mb-6">
                   <Phone className="h-8 w-8" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Walk In</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Walk In/ Call Us</h3>
+                <p className="text-gray-600 font-semibold text-lg mb-2">+1 (307) 302-8308</p>
                 <p className="text-gray-600 text-sm mb-1">Monday - Friday</p>
                 <p className="text-gray-600 text-sm">9:00 AM - 5:00 PM EST</p>
               </div>

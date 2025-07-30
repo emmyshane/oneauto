@@ -62,6 +62,11 @@ export function Footer() {
               </li>
               <li>
                 <address className="not-italic hover:text-blue-400">
+                  +1 (307) 302-8308
+                </address>
+              </li>
+              <li>
+                <address className="not-italic hover:text-blue-400">
                   1309 Coffeen Ave, Ste 1200, Sheridan, WY 82801
                 </address>
               </li>

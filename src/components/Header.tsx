@@ -27,7 +27,11 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-blue-600">One Auto Salvage</span>
+            <img
+              src="/LOGO.png"
+              alt="One Auto Salvage"
+              className="h-12 w-auto"
+            />
           </Link>
 
           <NavigationMenu>

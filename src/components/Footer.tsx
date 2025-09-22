@@ -17,7 +17,11 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/" className="flex items-center space-x-2">
-                  <span className="text-2xl font-bold text-blue-600">One Auto Salvage</span>
+                  <img
+                    src="/LOGO.png"
+                    alt="One Auto Salvage"
+                    className="h-10 w-auto sm:h-12 md:h-14 lg:h-16"
+                  />
                 </Link>
               </li>
             </ul>

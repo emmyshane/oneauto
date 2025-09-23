@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Test</title>
+    <script src="../code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        select, input { width: 300px; padding: 8px; border: 1px solid #ccc; }
+        .error { border-bottom: 2px solid red !important; }
+        .submit-btn { padding: 10px 20px; background: #04003f; color: white; border: none; cursor: pointer; }
+        .submit-btn:hover { background: #333; }
+        .test-result { margin-top: 20px; padding: 15px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error-msg { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Form Validation Test</h1>
+    <p>This page tests the form validation logic used in the main form.</p>
+    
+    <form id="testForm">
+        <div class="form-group">
+            <label for="year">Year *</label>
+            <div class="input-field year-f">
+                <select name="year" id="year" required>
+                    <option value="">Select Year</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Car Model *</label>
+            <div class="input-field model-f">
+                <select name="model" id="model" required>
+                    <option value="">Select Model</option>
+                    <option value="Toyota Camry">Toyota Camry</option>
+                    <option value="Honda Civic">Honda Civic</option>
+                    <option value="Ford F-150">Ford F-150</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="part_name">Part Name *</label>
+            <div class="input-field">
+                <select name="part_name" id="part_name" required>
+                    <option value="">Select Part</option>
+                    <option value="Engine">Engine</option>
+                    <option value="Transmission">Transmission</option>
+                    <option value="Alternator">Alternator</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="purchase">Purchase Timeline (optional)</label>
+            <select name="purchase" id="purchase">
+                <option value="">Select</option>
+                <option value="Immediately">Immediately</option>
+                <option value="Within 1 week">Within 1 week</option>
+                <option value="Within 1 month">Within 1 month</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vin">VIN (optional)</label>
+            <input type="text" name="vin" placeholder="Enter the VIN" />
+        </div>
+
+        <div class="form-group">
+            <label for="name">Name *</label>
+            <div class="input-field">
+                <input type="text" name="name" placeholder="Enter Your Name" pattern="^[a-zA-Z][a-zA-Z\s]+" title="Only Alphabet and Spaces" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <div class="input-field">
+                <input type="email" name="email" placeholder="Enter your email ID" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mobile">Contact *</label>
+            <div class="input-field">
+                <input type="text" name="mobile" title="Only Numbers" placeholder="Enter Phone Number" minlength="10" maxlength="20" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="zip_code">ZIP Code *</label>
+            <div class="input-field">
+                <input type="text" name="zip_code" placeholder="Enter your ZIP Code" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Comment (optional)</label>
+            <input type="text" name="comment" placeholder="Enter your Comment" />
+        </div>
+
+        <button type="submit" class="submit-btn">Test Submit</button>
+    </form>
+
+    <div id="testResults"></div>
+
+    <script>
+        // Include the same validation logic from part.js
+        $(document).ready(function() {
+            $('#testForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Clear previous results
+                $('#testResults').html('');
+                
+                // Get form data
+                var formData = {
+                    year: $('#year').val(),
+                    model: $('#model').val(),
+                    part_name: $('#part_name').val(),
+                    purchase: $('#purchase').val(),
+                    vin: $('input[name="vin"]').val(),
+                    name: $('input[name="name"]').val(),
+                    email: $('input[name="email"]').val(),
+                    mobile: $('input[name="mobile"]').val(),
+                    zip_code: $('input[name="zip_code"]').val(),
+                    comment: $('input[name="comment"]').val()
+                };
+                
+                // Reset field styling
+                $('.input-field').css('border-bottom', '1px solid #ccc');
+                $('.year-f').css('border-bottom', '1px solid #ccc');
+                $('.model-f').css('border-bottom', '1px solid #ccc');
+                
+                // Validate required fields
+                var isValid = true;
+                var errorMessage = '';
+                
+                if (!formData.year) {
+                    isValid = false;
+                    errorMessage += 'Year is required.\n';
+                    $('.year-f').css('border-bottom', '2px solid red');
+                }
+                
+                if (!formData.model) {
+                    isValid = false;
+                    errorMessage += 'Car model is required.\n';
+                    $('.model-f').css('border-bottom', '2px solid red');
+                }
+                
+                if (!formData.part_name) {
+                    isValid = false;
+                    errorMessage += 'Part name is required.\n';
+                    $('#part_name').closest('.input-field').css('border-bottom', '2px solid red');
+                }
+                
+                if (!formData.name) {
+                    isValid = false;
+                    errorMessage += 'Name is required.\n';
+                    $('input[name="name"]').closest('.input-field').css('border-bottom', '2px solid red');
+                }
+                
+                if (!formData.email) {
+                    isValid = false;
+                    errorMessage += 'Email is required.\n';
+                    $('input[name="email"]').closest('.input-field').css('border-bottom', '2px solid red');
+                }
+                
+                if (!formData.mobile) {
+                    isValid = false;
+                    errorMessage += 'Contact number is required.\n';
+                    $('input[name="mobile"]').closest('.input-field').css('border-bottom', '2px solid red');
+                }
+                
+                if (!formData.zip_code) {
+                    isValid = false;
+                    errorMessage += 'ZIP Code is required.\n';
+                    $('input[name="zip_code"]').closest('.input-field').css('border-bottom', '2px solid red');
+                }
+                
+                // Display results
+                var resultsHtml = '';
+                if (!isValid) {
+                    resultsHtml = '<div class="test-result error-msg"><h3>Validation Failed</h3><p>' + errorMessage.replace(/\n/g, '<br>') + '</p></div>';
+                } else {
+                    resultsHtml = '<div class="test-result success"><h3>Validation Passed!</h3><p>All required fields are filled correctly.</p><h4>Form Data:</h4><pre>' + JSON.stringify(formData, null, 2) + '</pre></div>';
+                }
+                
+                $('#testResults').html(resultsHtml);
+            });
+        });
+    </script>
+</body>
+</html>

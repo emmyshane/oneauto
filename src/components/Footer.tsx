@@ -66,7 +66,7 @@ export function Footer() {
               </li>
               <li>
                 <address className="not-italic hover:text-blue-400">
-                  +1 (307) 302-8308
+                  +1 (307) 218-7242
                 </address>
               </li>
               <li>
